@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cms": "decap-server"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "@types/node": "^25.9.1",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
+    "decap-server": "^3.7.0",
     "typescript": "^6.0.3"
   }
 }

@@ -19,9 +19,19 @@ npm install       # install dependencies
 npm run dev       # start local dev server
 npm run build     # production build
 npm run start     # run production build locally
+npm run cms       # start Decap local backend proxy (port 8081)
 ```
+
+## Local CMS development
+
+Run both servers in separate terminals:
+- `npm run dev` — Next.js (port 3000)
+- `npm run cms` — Decap local proxy (port 8081)
+
+Then open `http://localhost:3000/admin/`.
 
 ## Notes
 
 - Decap CMS config lives in `public/admin/config.yml`
-- CMS collections define the content schema for breed pages and association content
+- CMS collections define the content schema for news articles
+- `local_backend: true` is set in `config.yml` for local development — **remove it before deploying to production**
