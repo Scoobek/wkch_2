@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 
+const playfair = Playfair_Display({
+    subsets: ["latin", "latin-ext"],
+    display: "swap",
+    variable: "--font-playfair",
+    weight: ["400", "700", "900"],
+});
+
 export const metadata: Metadata = {
-    title: "WKCH – Sighthound Breeds Association in Poland",
+    title: "Wybieralny Klub Charta",
     description:
-        "Wybieralny Klub Charta w Polsce – information on all sighthound breeds",
+        "Polska organizacja zrzeszająca hodowców i właścicieli chartów wszystkich ras FCI Grupy X.",
 };
 
 export default function RootLayout({
@@ -14,7 +22,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="pl">
-            <body>{children}</body>
+            <body className={playfair.variable}>{children}</body>
         </html>
     );
 }

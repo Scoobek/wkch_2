@@ -1,6 +1,6 @@
 # WKCH — Sighthound Breeds Association CMS
 
-Website and CMS for the Polish Sighthound Club (Wybieralny Klub Charta w Polsce), covering all sighthound breeds. Built with Next.js and Decap CMS.
+Website and CMS for the Sighthound Club in Poland (Wybieralny Klub Charta w Polsce), covering all sighthound breeds. Built with Next.js and Decap CMS.
 
 ## Tech stack
 
