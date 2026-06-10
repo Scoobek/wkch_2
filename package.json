@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "CMS for a dog breed association covering all sighound breeds",
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "next": "^16.2.6",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
