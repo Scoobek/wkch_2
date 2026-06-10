@@ -1,3 +1,5 @@
+import type { Locale } from '@/i18n';
+
 export interface Breed {
   pl: string;
   en: string;
@@ -24,4 +26,8 @@ export const BREEDS: Breed[] = [
 
 export function getBreedBySlug(slug: string): Breed | undefined {
   return BREEDS.find(b => b.slug === slug);
+}
+
+export function breedName(breed: Breed, locale: Locale): string {
+  return locale === 'pl' ? breed.pl : breed.en;
 }

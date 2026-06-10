@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "start": "Start",
+    "breeds": "Rasy",
+    "news": "Aktualności",
+    "about": "O klubie",
+    "events": "Wydarzenia",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "eyebrow": "est. 1971 · Warszawa",
+    "heading": "Wybieralny Klub",
+    "headingAccent": "Charta w Polsce",
+    "description": "Polska organizacja zrzeszająca hodowców i właścicieli chartów wszystkich ras FCI Grupy X. Działamy na rzecz ochrony, hodowli i promocji chartów w Polsce.",
+    "cta": "Dowiedz się więcej →"
+  },
+  "breeds": {
+    "title": "Rasy chartów",
+    "subtitle": "FCI Grupa X · {count} ras"
+  },
+  "news": {
+    "title": "Aktualności",
+    "subtitle": "coursing · wystawy · wyścigi",
+    "filterAll": "wszystko",
+    "empty": "Brak aktualności.",
+    "emptyCategory": "Brak aktualności w kategorii {category}."
+  },
+  "footer": {
+    "about": "O klubie",
+    "aboutText": "Wybieralny Klub Charta działa od 1971 roku i zrzesza hodowców oraz właścicieli chartów wszystkich ras FCI Grupy X w Polsce. Naszym celem jest ochrona ras, prowadzenie hodowli i organizacja zawodów.",
+    "aboutCta": "Nasza historia →",
+    "sponsors": "Sponsorzy",
+    "sponsorsCta": "zostań partnerem →",
+    "social": "Social media",
+    "socialSub": "śledź nas",
+    "contact": "Kontakt",
+    "addressLabel": "adres",
+    "emailLabel": "email / tel",
+    "responseTime": "odpowiadamy w 48h"
+  },
+  "breedPage": {
+    "backLink": "← wszystkie rasy",
+    "sidebarHeading": "Rasy · {count}",
+    "breadcrumb": "Rasy / {breed}",
+    "stats": {
+      "height": "wzrost",
+      "weight": "waga",
+      "fciGroup": "grupa FCI",
+      "origin": "pochodzenie"
+    },
+    "accordion": {
+      "history": "Historia i pochodzenie",
+      "temperament": "Temperament",
+      "appearance": "Wygląd i rozmiar",
+      "care": "Pielęgnacja i ruch",
+      "standard": "Standard FCI",
+      "gallery": "Galeria zdjęć",
+      "champions": "Słynne psy i championy",
+      "breeders": "Hodowcy (katalog)"
+    },
+    "placeholder": "Treść sekcji {title} będzie dostępna wkrótce.",
+    "feed": "Feed",
+    "upcoming": "NAJBLIŻSZE",
+    "moreNews": "więcej →",
+    "allCalendar": "Cały kalendarz →",
+    "railFilters": {
+      "all": "wszystko",
+      "coursing": "coursing",
+      "shows": "wystawy",
+      "racing": "wyścigi"
+    }
+  },
+  "metadata": {
+    "siteTitle": "Wybieralny Klub Charta",
+    "siteDescription": "Polska organizacja zrzeszająca hodowców i właścicieli chartów wszystkich ras FCI Grupy X.",
+    "breedTitle": "{breed} – Wybieralny Klub Charta",
+    "breedDescription": "Informacje o rasie {breed} ({breedEn}) – FCI nr {fci}."
+  }
+}

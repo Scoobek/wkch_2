@@ -2,23 +2,29 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import styles from './SiteHeader.module.css';
 
-const NAV = [
-  { label: 'Start',       href: '/' },
-  { label: 'Rasy',        href: '/#breeds' },
-  { label: 'Aktualności', href: '/#news' },
-  { label: 'O klubie',    href: '/#about' },
-  { label: 'Wydarzenia',  href: '/#news' },
-  { label: 'Kontakt',     href: '/#contact' },
-];
-
 export default function SiteHeader() {
+  const t = useTranslations('nav');
+  const locale = useLocale();
   const pathname = usePathname();
+
+  const otherLocale = locale === 'pl' ? 'en' : 'pl';
+  const switchHref = pathname.replace(new RegExp(`^/${locale}`), `/${otherLocale}`);
+
+  const NAV = [
+    { label: t('start'),   href: `/${locale}` },
+    { label: t('breeds'),  href: `/${locale}/#breeds` },
+    { label: t('news'),    href: `/${locale}/#news` },
+    { label: t('about'),   href: `/${locale}/#about` },
+    { label: t('events'),  href: `/${locale}/#news` },
+    { label: t('contact'), href: `/${locale}/#contact` },
+  ];
 
   return (
     <header className={styles.header}>
-      <Link href="/" className={styles.logo}>
+      <Link href={`/${locale}`} className={styles.logo}>
         <svg width="38" height="38" viewBox="0 0 40 40" fill="none" aria-hidden="true">
           <circle cx="20" cy="20" r="18" stroke="var(--border-strong)" strokeWidth="1.5" fill="var(--paper)" />
           <path
@@ -38,7 +44,7 @@ export default function SiteHeader() {
 
       <nav className={styles.nav} aria-label="Main navigation">
         {NAV.map(({ label, href }) => {
-          const isActive = pathname === '/' && href === '/';
+          const isActive = pathname === `/${locale}` && href === `/${locale}`;
           return (
             <Link
               key={href + label}
@@ -52,8 +58,12 @@ export default function SiteHeader() {
       </nav>
 
       <div className={styles.lang}>
-        <span className={`${styles.langChip} ${styles.langChipActive}`}>PL</span>
-        <span className={styles.langChip}>EN</span>
+        <span className={`${styles.langChip} ${styles.langChipActive}`}>
+          {locale.toUpperCase()}
+        </span>
+        <Link href={switchHref} className={styles.langChip}>
+          {otherLocale.toUpperCase()}
+        </Link>
       </div>
     </header>
   );

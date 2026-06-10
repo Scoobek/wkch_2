@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import styles from './PageFooter.module.css';
 
 const SOCIAL = [
@@ -7,27 +8,25 @@ const SOCIAL = [
   { name: 'TikTok',    handle: '@klubchartow', followers: '3.3k' },
 ];
 
-export default function PageFooter() {
+export default async function PageFooter() {
+  const t = await getTranslations('footer');
+
   return (
     <footer className={styles.footer}>
       {/* About */}
       <div id="about" className={styles.row}>
-        <h2 className={styles.rowTitle}>O klubie</h2>
+        <h2 className={styles.rowTitle}>{t('about')}</h2>
         <div className={styles.rowContent}>
-          <p className={styles.text}>
-            Wybieralny Klub Charta działa od 1971 roku i zrzesza hodowców oraz
-            właścicieli chartów wszystkich ras FCI Grupy X w Polsce. Naszym celem
-            jest ochrona ras, prowadzenie hodowli i organizacja zawodów.
-          </p>
+          <p className={styles.text}>{t('aboutText')}</p>
         </div>
         <div className={styles.rowAction}>
-          <a href="#" className={styles.btn}>Nasza historia →</a>
+          <a href="#" className={styles.btn}>{t('aboutCta')}</a>
         </div>
       </div>
 
       {/* Sponsors */}
       <div className={`${styles.row} ${styles.rowDashed}`}>
-        <h2 className={styles.rowTitle}>Sponsorzy</h2>
+        <h2 className={styles.rowTitle}>{t('sponsors')}</h2>
         <div className={styles.rowContent}>
           <div className={styles.sponsorsGrid}>
             {[1, 2, 3, 4, 5].map(i => (
@@ -36,15 +35,15 @@ export default function PageFooter() {
           </div>
         </div>
         <div className={styles.rowAction}>
-          <a href="#" className={styles.linkMuted}>zostań partnerem →</a>
+          <a href="#" className={styles.linkMuted}>{t('sponsorsCta')}</a>
         </div>
       </div>
 
       {/* Social media */}
       <div className={`${styles.row} ${styles.rowDashed}`}>
         <div>
-          <h2 className={styles.rowTitle}>Social media</h2>
-          <p className={styles.rowTitleSub}>śledź nas</p>
+          <h2 className={styles.rowTitle}>{t('social')}</h2>
+          <p className={styles.rowTitleSub}>{t('socialSub')}</p>
         </div>
         <div className={styles.rowContent}>
           <div className={styles.socialGrid}>
@@ -67,15 +66,15 @@ export default function PageFooter() {
 
       {/* Contact */}
       <div id="contact" className={`${styles.row} ${styles.rowDashed} ${styles.rowLast}`}>
-        <h2 className={styles.rowTitle}>Kontakt</h2>
+        <h2 className={styles.rowTitle}>{t('contact')}</h2>
         <div className={styles.rowContent}>
           <div className={styles.contactGrid}>
             <div>
-              <p className={styles.contactLabel}>adres</p>
+              <p className={styles.contactLabel}>{t('addressLabel')}</p>
               <p className={styles.contactValue}>ul. Chartów 1<br />00-001 Warszawa</p>
             </div>
             <div>
-              <p className={styles.contactLabel}>email / tel</p>
+              <p className={styles.contactLabel}>{t('emailLabel')}</p>
               <p className={styles.contactValue}>
                 kontakt@wkch.pl<br />+48 22 000 00 00
               </p>
@@ -83,7 +82,7 @@ export default function PageFooter() {
           </div>
         </div>
         <div className={styles.rowAction}>
-          <p className={styles.linkMuted}>odpowiadamy w 48h</p>
+          <p className={styles.linkMuted}>{t('responseTime')}</p>
         </div>
       </div>
     </footer>
