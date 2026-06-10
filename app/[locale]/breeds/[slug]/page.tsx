@@ -1,50 +1,59 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import SiteHeader from '@/components/SiteHeader';
-import { BREEDS, getBreedBySlug } from '@/lib/breeds';
+import { BREEDS, getBreedBySlug, breedName } from '@/lib/breeds';
 import { getAllNews } from '@/lib/news';
+import { locales, type Locale } from '@/i18n';
 import styles from './page.module.css';
 
 export function generateStaticParams() {
-  return BREEDS.map(b => ({ slug: b.slug }));
+  return locales.flatMap(locale =>
+    BREEDS.map(b => ({ locale, slug: b.slug }))
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const breed = getBreedBySlug(slug);
   if (!breed) return {};
+  const t = await getTranslations({ locale: locale as Locale, namespace: 'metadata' });
+  const name = breedName(breed, locale as Locale);
   return {
-    title: `${breed.pl} – Wybieralny Klub Charta`,
-    description: `Informacje o rasie ${breed.pl} (${breed.en}) – FCI nr ${breed.fci}.`,
+    title: t('breedTitle', { breed: name }),
+    description: t('breedDescription', { breed: name, breedEn: breed.en, fci: breed.fci }),
   };
 }
 
-const ACCORDION_SECTIONS = [
-  'Historia i pochodzenie',
-  'Temperament',
-  'Wygląd i rozmiar',
-  'Pielęgnacja i ruch',
-  'Standard FCI',
-  'Galeria zdjęć',
-  'Słynne psy i championy',
-  'Hodowcy (katalog)',
-];
+const ACCORDION_KEYS = [
+  'history', 'temperament', 'appearance', 'care',
+  'standard', 'gallery', 'champions', 'breeders',
+] as const;
+
+const STAT_KEYS = ['height', 'weight', 'fciGroup', 'origin'] as const;
+
+const RAIL_FILTER_KEYS = ['all', 'coursing', 'shows', 'racing'] as const;
 
 export default async function BreedPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const breed = getBreedBySlug(slug);
   if (!breed) notFound();
 
+  setRequestLocale(locale);
+  const t = await getTranslations('breedPage');
   const news = getAllNews().slice(0, 5);
+  const loc = locale as Locale;
+  const dateLocale = loc === 'pl' ? 'pl-PL' : 'en-GB';
+  const altName = loc === 'pl' ? breed.en : breed.pl;
 
   return (
     <>
@@ -52,16 +61,16 @@ export default async function BreedPage({
       <div className={styles.layout}>
         {/* Sidebar */}
         <aside className={styles.sidebar}>
-          <Link href="/#breeds" className={styles.backLink}>← wszystkie rasy</Link>
-          <p className={styles.sidebarHeading}>Rasy · {BREEDS.length}</p>
+          <Link href={`/${locale}/#breeds`} className={styles.backLink}>{t('backLink')}</Link>
+          <p className={styles.sidebarHeading}>{t('sidebarHeading', { count: BREEDS.length })}</p>
           <nav aria-label="Breeds list">
             {BREEDS.map(b => (
               <Link
                 key={b.slug}
-                href={`/breeds/${b.slug}`}
+                href={`/${locale}/breeds/${b.slug}`}
                 className={`${styles.sidebarItem} ${b.slug === slug ? styles.sidebarItemActive : ''}`}
               >
-                <span>{b.pl}</span>
+                <span>{breedName(b, loc)}</span>
                 <span className={styles.sidebarOrigin}>{b.origin}</span>
               </Link>
             ))}
@@ -70,10 +79,10 @@ export default async function BreedPage({
 
         {/* Main */}
         <main className={styles.main}>
-          <p className={styles.breadcrumb}>Rasy / {breed.pl}</p>
-          <h1 className={styles.breedTitle}>{breed.pl}</h1>
+          <p className={styles.breadcrumb}>{t('breadcrumb', { breed: breedName(breed, loc) })}</p>
+          <h1 className={styles.breedTitle}>{breedName(breed, loc)}</h1>
           <p className={styles.breedSubtitle}>
-            {breed.en} · FCI #{breed.fci}
+            {altName} · FCI #{breed.fci}
           </p>
 
           {/* Photo gallery */}
@@ -87,9 +96,9 @@ export default async function BreedPage({
 
           {/* Stats */}
           <div className={styles.stats}>
-            {['wzrost', 'waga', 'grupa FCI', 'pochodzenie'].map(stat => (
-              <div key={stat} className={styles.statCard}>
-                <p className={styles.statLabel}>{stat}</p>
+            {STAT_KEYS.map(key => (
+              <div key={key} className={styles.statCard}>
+                <p className={styles.statLabel}>{t(`stats.${key}`)}</p>
                 <div className={styles.statValue} aria-label="data coming soon" />
               </div>
             ))}
@@ -97,45 +106,48 @@ export default async function BreedPage({
 
           {/* Accordion */}
           <div className={styles.accordion}>
-            {ACCORDION_SECTIONS.map((title, i) => (
-              <details key={title} className={styles.accordionItem} open={i === 0}>
-                <summary className={styles.accordionSummary}>
-                  <span className={styles.accordionIndex}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span>{title}</span>
-                  <span className={styles.accordionIcon} aria-hidden="true" />
-                </summary>
-                <div className={styles.accordionContent}>
-                  <p className={styles.placeholder}>
-                    Treść sekcji „{title}" będzie dostępna wkrótce.
-                  </p>
-                </div>
-              </details>
-            ))}
+            {ACCORDION_KEYS.map((key, i) => {
+              const title = t(`accordion.${key}`);
+              return (
+                <details key={key} className={styles.accordionItem} open={i === 0}>
+                  <summary className={styles.accordionSummary}>
+                    <span className={styles.accordionIndex}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span>{title}</span>
+                    <span className={styles.accordionIcon} aria-hidden="true" />
+                  </summary>
+                  <div className={styles.accordionContent}>
+                    <p className={styles.placeholder}>
+                      {t('placeholder', { title })}
+                    </p>
+                  </div>
+                </details>
+              );
+            })}
           </div>
         </main>
 
         {/* Right rail */}
         <aside className={styles.rail}>
-          <p className={styles.railHeading}>Feed</p>
+          <p className={styles.railHeading}>{t('feed')}</p>
 
           {news.length > 0 && (
             <div className={styles.featuredEvent}>
-              <p className={styles.featuredLabel}>NAJBLIŻSZE</p>
+              <p className={styles.featuredLabel}>{t('upcoming')}</p>
               <p className={styles.featuredTitle}>{news[0].title}</p>
               {news[0].location && (
                 <p className={styles.featuredMeta}>📍 {news[0].location}</p>
               )}
-              <a href="/#news" className={styles.featuredCta}>
-                więcej →
+              <a href={`/${locale}/#news`} className={styles.featuredCta}>
+                {t('moreNews')}
               </a>
             </div>
           )}
 
           <div className={styles.railFilters}>
-            {['wszystko', 'coursing', 'wystawy', 'wyścigi'].map(f => (
-              <span key={f} className={styles.railChip}>{f}</span>
+            {RAIL_FILTER_KEYS.map(key => (
+              <span key={key} className={styles.railChip}>{t(`railFilters.${key}`)}</span>
             ))}
           </div>
 
@@ -149,7 +161,7 @@ export default async function BreedPage({
                         {new Date(article.date).getDate()}
                       </span>
                       <span className={styles.feedMonth}>
-                        {new Date(article.date).toLocaleDateString('pl-PL', { month: 'short' })}
+                        {new Date(article.date).toLocaleDateString(dateLocale, { month: 'short' })}
                       </span>
                     </>
                   )}
@@ -167,8 +179,8 @@ export default async function BreedPage({
             ))}
           </div>
 
-          <a href="/#news" className={styles.railCta}>
-            Cały kalendarz →
+          <a href={`/${locale}/#news`} className={styles.railCta}>
+            {t('allCalendar')}
           </a>
         </aside>
       </div>

@@ -1,35 +1,38 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import type { NewsArticle } from '@/lib/news';
 import styles from './NewsSection.module.css';
 
 const FILTERS = ['all', 'Coursing', 'Wystawy', 'Wyścigi', 'Szkolenia', 'Meetup'];
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('pl-PL', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
-}
 
 interface Props {
   articles: NewsArticle[];
 }
 
 export default function NewsSection({ articles }: Props) {
+  const t = useTranslations('news');
+  const locale = useLocale();
+  const dateLocale = locale === 'pl' ? 'pl-PL' : 'en-GB';
   const [active, setActive] = useState('all');
 
-  const filtered =
-    active === 'all' ? articles : articles.filter(a => a.tag === active);
+  const filtered = active === 'all' ? articles : articles.filter(a => a.tag === active);
+
+  function formatDate(iso: string) {
+    return new Date(iso).toLocaleDateString(dateLocale, {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  }
 
   return (
     <section id="news" className={styles.section}>
       <div className={styles.header}>
         <div>
-          <h2 className={styles.title}>Aktualności</h2>
-          <p className={styles.subtitle}>coursing · wystawy · wyścigi</p>
+          <h2 className={styles.title}>{t('title')}</h2>
+          <p className={styles.subtitle}>{t('subtitle')}</p>
         </div>
         <div className={styles.filters} role="group" aria-label="Filter news">
           {FILTERS.map(f => (
@@ -39,7 +42,7 @@ export default function NewsSection({ articles }: Props) {
               onClick={() => setActive(f)}
               aria-pressed={active === f}
             >
-              {f}
+              {f === 'all' ? t('filterAll') : f}
             </button>
           ))}
         </div>
@@ -72,8 +75,8 @@ export default function NewsSection({ articles }: Props) {
       ) : (
         <p className={styles.empty}>
           {active === 'all'
-            ? 'Brak aktualności.'
-            : `Brak aktualności w kategorii „${active === 'all' ? 'wszystko' : active}".`}
+            ? t('empty')
+            : t('emptyCategory', { category: active })}
         </p>
       )}
     </section>
