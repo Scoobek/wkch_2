@@ -1,0 +1,165 @@
+.rail {
+  border-left: 1.5px solid var(--border-strong);
+  padding: 20px 18px;
+  background: var(--bg);
+  position: sticky;
+  top: 67px;
+  height: calc(100vh - 67px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.railHeading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.featuredEvent {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 14px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.featuredLabel {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--accent-gold);
+}
+
+.featuredTitle {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.featuredMeta {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.featuredCta {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 5px 12px;
+  background: var(--accent);
+  color: var(--paper);
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.railFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.railChip {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.railFeed {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.feedItem {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.feedDate {
+  border: 1.2px dashed var(--border);
+  border-radius: 3px;
+  padding: 4px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedDay {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.feedMonth {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.feedTag {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.feedTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.feedLoc {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.railCta {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  transition: background 0.12s, color 0.12s;
+  margin-top: auto;
+}
+
+.railCta:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
