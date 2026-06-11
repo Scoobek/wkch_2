@@ -1,10 +1,10 @@
 import { setRequestLocale } from "next-intl/server";
 import { localeParams } from '@/lib/static-params';
-import SiteHeader from "@/components/SiteHeader";
-import HeroSplit from "@/components/HeroSplit";
-import NewsSection from "@/components/NewsSection";
-import BreedsSection from "@/components/BreedsSection";
-import PageFooter from "@/components/PageFooter";
+import SiteHeader from "@/components/SiteHeader/SiteHeader";
+import HeroSplit from "@/components/HeroSplit/HeroSplit";
+import NewsSection from "@/components/NewsSection/NewsSection";
+import BreedsSection from "@/components/BreedsSection/BreedsSection";
+import PageFooter from "@/components/PageFooter/PageFooter";
 import { BREEDS } from "@/lib/breeds";
 import { getAllNews } from "@/lib/news";
 

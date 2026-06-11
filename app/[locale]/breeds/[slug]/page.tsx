@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import SiteHeader from '@/components/SiteHeader';
+import SiteHeader from '@/components/SiteHeader/SiteHeader';
 import { BREEDS, getBreedBySlug, breedName } from '@/lib/breeds';
 import { getAllNews } from '@/lib/news';
 import { type Locale } from '@/i18n';
