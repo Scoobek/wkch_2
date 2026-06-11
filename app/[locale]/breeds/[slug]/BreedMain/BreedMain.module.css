@@ -1,0 +1,149 @@
+.main {
+  padding: 28px 32px;
+  overflow: hidden;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.breedTitle {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.breedSubtitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.gallerySecondary {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+.galleryImg {
+  background: linear-gradient(135deg, #e8e4dc 0%, #d5cfc6 60%, #c8c2b8 100%);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  min-height: 100px;
+}
+
+.galleryImgMain {
+  height: 260px;
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.statCard {
+  border: 1.2px dashed var(--border);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.statValue {
+  height: 14px;
+  background: var(--border);
+  border-radius: 2px;
+  width: 70%;
+}
+
+/* Accordion */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.accordionItem {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.accordionItem[open] .accordionIcon::after {
+  content: '−';
+}
+
+.accordionSummary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  user-select: none;
+}
+
+.accordionSummary::-webkit-details-marker {
+  display: none;
+}
+
+.accordionSummary:hover {
+  background: var(--bg);
+}
+
+.accordionIndex {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.accordionIcon {
+  margin-left: auto;
+  font-size: 20px;
+  color: var(--muted);
+}
+
+.accordionIcon::after {
+  content: '+';
+}
+
+.accordionContent {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.placeholder {
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+}
