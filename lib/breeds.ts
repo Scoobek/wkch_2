@@ -25,7 +25,7 @@ export const BREEDS: Breed[] = [
 ];
 
 export function getBreedBySlug(slug: string): Breed | undefined {
-  return BREEDS.find(b => b.slug === slug);
+  return BREEDS.find(breed => breed.slug === slug);
 }
 
 export function breedName(breed: Breed, locale: Locale): string {

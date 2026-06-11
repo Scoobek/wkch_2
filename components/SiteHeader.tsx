@@ -61,9 +61,13 @@ export default function SiteHeader() {
         <span className={`${styles.langChip} ${styles.langChipActive}`}>
           {locale.toUpperCase()}
         </span>
-        <Link href={switchHref} className={styles.langChip}>
+        <a
+          href={switchHref}
+          className={styles.langChip}
+          onClick={() => localStorage.setItem('wkch-locale', otherLocale)}
+        >
           {otherLocale.toUpperCase()}
-        </Link>
+        </a>
       </div>
     </header>
   );

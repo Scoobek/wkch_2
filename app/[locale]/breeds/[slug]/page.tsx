@@ -5,14 +5,11 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import SiteHeader from '@/components/SiteHeader';
 import { BREEDS, getBreedBySlug, breedName } from '@/lib/breeds';
 import { getAllNews } from '@/lib/news';
-import { locales, type Locale } from '@/i18n';
+import { type Locale } from '@/i18n';
+import { breedParams } from '@/lib/static-params';
 import styles from './page.module.css';
 
-export function generateStaticParams() {
-  return locales.flatMap(locale =>
-    BREEDS.map(b => ({ locale, slug: b.slug }))
-  );
-}
+export const generateStaticParams = breedParams;
 
 export async function generateMetadata({
   params,
@@ -64,14 +61,14 @@ export default async function BreedPage({
           <Link href={`/${locale}/#breeds`} className={styles.backLink}>{t('backLink')}</Link>
           <p className={styles.sidebarHeading}>{t('sidebarHeading', { count: BREEDS.length })}</p>
           <nav aria-label="Breeds list">
-            {BREEDS.map(b => (
+            {BREEDS.map(breed => (
               <Link
-                key={b.slug}
-                href={`/${locale}/breeds/${b.slug}`}
-                className={`${styles.sidebarItem} ${b.slug === slug ? styles.sidebarItemActive : ''}`}
+                key={breed.slug}
+                href={`/${locale}/breeds/${breed.slug}`}
+                className={`${styles.sidebarItem} ${breed.slug === slug ? styles.sidebarItemActive : ''}`}
               >
-                <span>{breedName(b, loc)}</span>
-                <span className={styles.sidebarOrigin}>{b.origin}</span>
+                <span>{breedName(breed, loc)}</span>
+                <span className={styles.sidebarOrigin}>{breed.origin}</span>
               </Link>
             ))}
           </nav>

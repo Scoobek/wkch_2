@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 import { Playfair_Display } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
-import { locales, type Locale } from '@/i18n';
+import { type Locale } from '@/i18n';
+import { localeParams } from '@/lib/static-params';
 import '../globals.css';
 
 const playfair = Playfair_Display({
@@ -13,9 +14,7 @@ const playfair = Playfair_Display({
   weight: ['400', '700', '900'],
 });
 
-export function generateStaticParams() {
-  return locales.map(locale => ({ locale }));
-}
+export const generateStaticParams = localeParams;
 
 export async function generateMetadata({
   params,
