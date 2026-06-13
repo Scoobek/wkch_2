@@ -1,18 +1,16 @@
 import { getTranslations } from "next-intl/server";
-import type { Locale } from "@/i18n";
 import type { NewsArticleFull } from "@/lib/news";
 import GalleryClient from "./GalleryClient";
 import styles from "./ArticleGallery.module.css";
 
 interface Props {
-    locale: Locale;
     article: NewsArticleFull;
 }
 
-export default async function ArticleGallery({ locale, article }: Props) {
+export default async function ArticleGallery({ article }: Props) {
     if (!article.images?.length) return null;
 
-    const t = await getTranslations({ locale, namespace: "newsArticlePage" });
+    const t = await getTranslations("newsArticlePage");
 
     return (
         <section className={styles.section}>

@@ -1,15 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import type { NewsArticleFull } from "@/lib/news";
-import type { Locale } from "@/i18n";
 import styles from "./ArticleLocation.module.css";
 
 interface Props {
     article: NewsArticleFull;
-    locale: Locale;
 }
 
-export default async function ArticleLocation({ article, locale }: Props) {
-    const t = await getTranslations({ locale, namespace: "newsArticlePage" });
+export default async function ArticleLocation({ article }: Props) {
+    const t = await getTranslations("newsArticlePage");
 
     if (!article.location.lat && !article.location.lng) return null;
 

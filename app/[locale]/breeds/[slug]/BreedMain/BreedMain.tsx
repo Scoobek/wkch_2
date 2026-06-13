@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { breedName } from '@/lib/breeds';
 import type { Breed } from '@/lib/breeds';
 import type { Locale } from '@/i18n';
@@ -13,10 +13,10 @@ const STAT_KEYS = ['height', 'weight', 'fciGroup', 'origin'] as const;
 
 interface Props {
   breed: Breed;
-  locale: Locale;
 }
 
-export default async function BreedMain({ breed, locale }: Props) {
+export default async function BreedMain({ breed }: Props) {
+  const locale = await getLocale() as Locale;
   const t = await getTranslations('breedPage');
   const altName = locale === 'pl' ? breed.en : breed.pl;
 

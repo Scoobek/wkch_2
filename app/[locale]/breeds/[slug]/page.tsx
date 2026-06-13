@@ -40,15 +40,14 @@ export default async function BreedPage({
 
   setRequestLocale(locale);
   const news = getAllNews().slice(0, 5);
-  const loc = locale as Locale;
 
   return (
     <>
       <SiteHeader />
       <div className={styles.layout}>
-        <BreedSidebar breeds={BREEDS} currentSlug={slug} locale={loc} />
-        <BreedMain breed={breed} locale={loc} />
-        <BreedRail articles={news} locale={loc} />
+        <BreedSidebar breeds={BREEDS} currentSlug={slug} />
+        <BreedMain breed={breed} />
+        <BreedRail articles={news} />
       </div>
     </>
   );

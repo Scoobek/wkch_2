@@ -1,16 +1,15 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import type { NewsArticle } from '@/lib/news';
-import type { Locale } from '@/i18n';
 import styles from './BreedRail.module.css';
 
 const RAIL_FILTER_KEYS = ['all', 'coursing', 'shows', 'racing'] as const;
 
 interface Props {
   articles: NewsArticle[];
-  locale: Locale;
 }
 
-export default async function BreedRail({ articles, locale }: Props) {
+export default async function BreedRail({ articles }: Props) {
+  const locale = await getLocale();
   const t = await getTranslations('breedPage');
   const dateLocale = locale === 'pl' ? 'pl-PL' : 'en-GB';
   const featured = articles[0];

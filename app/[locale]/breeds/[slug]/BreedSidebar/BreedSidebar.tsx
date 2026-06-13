@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { breedName } from '@/lib/breeds';
 import type { Breed } from '@/lib/breeds';
 import type { Locale } from '@/i18n';
@@ -8,10 +8,10 @@ import styles from './BreedSidebar.module.css';
 interface Props {
   breeds: Breed[];
   currentSlug: string;
-  locale: Locale;
 }
 
-export default async function BreedSidebar({ breeds, currentSlug, locale }: Props) {
+export default async function BreedSidebar({ breeds, currentSlug }: Props) {
+  const locale = await getLocale() as Locale;
   const t = await getTranslations('breedPage');
 
   return (

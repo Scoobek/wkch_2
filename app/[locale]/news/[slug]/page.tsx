@@ -41,16 +41,15 @@ export default async function NewsArticlePage({
     if (!article) notFound();
 
     setRequestLocale(locale);
-    const loc = locale as Locale;
 
     return (
         <>
             <SiteHeader />
             <main className={styles.page}>
-                <ArticleHeader article={article} locale={loc} />
-                <ArticleBody article={article} locale={loc} />
-                <ArticleLocation article={article} locale={loc} />
-                <ArticleGallery locale={loc} article={article} />
+                <ArticleHeader article={article} />
+                <ArticleBody article={article} />
+                <ArticleLocation article={article} />
+                <ArticleGallery article={article} />
             </main>
         </>
     );
