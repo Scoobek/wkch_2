@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { NewsArticleFull } from "@/lib/news";
-import type { Locale } from "@/i18n";
 import styles from "./ArticleBody.module.css";
 
 interface Props {
     article: NewsArticleFull;
-    locale: Locale;
 }
 
-export default async function ArticleBody({ article, locale }: Props) {
-    const t = await getTranslations({ locale, namespace: "newsArticlePage" });
+export default async function ArticleBody({ article }: Props) {
+    const locale = await getLocale();
+    const t = await getTranslations("newsArticlePage");
     const dateLocale = locale === "pl" ? "pl-PL" : "en-GB";
     const formattedDate = article.date
         ? new Date(article.date).toLocaleDateString(dateLocale, {
