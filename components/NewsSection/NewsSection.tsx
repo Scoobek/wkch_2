@@ -1,18 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import type { NewsArticle } from "@/lib/news";
 import styles from "./NewsSection.module.css";
 
-const FILTERS = [
-    "all",
-    "Coursing",
-    "Wystawy",
-    "Wyścigi",
-    "Szkolenia",
-    "Meetup",
+const FILTERS: { value: string; labelKey: string }[] = [
+    { value: "all",       labelKey: "all" },
+    { value: "Coursing",  labelKey: "coursing" },
+    { value: "Wystawy",   labelKey: "shows" },
+    { value: "Wyścigi",   labelKey: "racing" },
+    { value: "Szkolenia", labelKey: "training" },
+    { value: "Meetup",    labelKey: "meetup" },
+    { value: "Breed",     labelKey: "breed" },
 ];
 
 interface Props {
@@ -38,6 +40,10 @@ export default function NewsSection({ articles }: Props) {
         });
     }
 
+    function handleFilterClick(tag: string) {
+        return () => setActive(tag);
+    }
+
     return (
         <section id="news" className={styles.section}>
             <div className={styles.header}>
@@ -50,16 +56,16 @@ export default function NewsSection({ articles }: Props) {
                     role="group"
                     aria-label="Filter news"
                 >
-                    {FILTERS.map((f) => (
+                    {FILTERS.map((filter) => (
                         <button
-                            key={f}
+                            key={filter.value}
                             className={`${styles.chip} ${
-                                active === f ? styles.chipActive : ""
+                                active === filter.value ? styles.chipActive : ""
                             }`}
-                            onClick={() => setActive(f)}
-                            aria-pressed={active === f}
+                            onClick={handleFilterClick(filter.value)}
+                            aria-pressed={active === filter.value}
                         >
-                            {f === "all" ? t("filterAll") : f}
+                            {t(filter.labelKey)}
                         </button>
                     ))}
                 </div>
@@ -67,12 +73,20 @@ export default function NewsSection({ articles }: Props) {
 
             {filtered.length > 0 ? (
                 <div className={styles.grid}>
-                    {filtered.map((article) => (
+                    {filtered.map((article, index) => (
                         <article key={article.slug} className={styles.card}>
-                            <div
-                                className={styles.cardImage}
-                                aria-hidden="true"
-                            />
+                            <div className={styles.cardImage}>
+                                {article.thumbnail && (
+                                    <Image
+                                        src={article.thumbnail}
+                                        alt={article.title}
+                                        fill
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                                        priority={index === 0}
+                                        className={styles.cardImg}
+                                    />
+                                )}
+                            </div>
                             <div className={styles.cardBody}>
                                 <div className={styles.cardMeta}>
                                     {article.tag && (
@@ -92,7 +106,7 @@ export default function NewsSection({ articles }: Props) {
                                 <h3 className={styles.cardTitle}>
                                     {article.title}
                                 </h3>
-                                {article.location && (
+                                {article.location?.town && (
                                     <p className={styles.cardLocation}>
                                         📍 {article.location.town}
                                     </p>
@@ -100,7 +114,11 @@ export default function NewsSection({ articles }: Props) {
                                 <Link
                                     className={styles.cardLink}
                                     href={`/${locale}/news/${article.slug}`}
-                                ></Link>
+                                >
+                                    <span className="sr-only">
+                                        {article.title}
+                                    </span>
+                                </Link>
                             </div>
                         </article>
                     ))}

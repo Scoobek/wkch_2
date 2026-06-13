@@ -21,7 +21,13 @@
     "news": {
         "title": "Aktualności",
         "subtitle": "coursing · wystawy · wyścigi",
-        "filterAll": "wszystko",
+        "all": "wszystko",
+        "coursing": "Coursing",
+        "shows": "Wystawy",
+        "racing": "Wyścigi",
+        "training": "Szkolenia",
+        "meetup": "Meetup",
+        "breed": "Rasa",
         "empty": "Brak aktualności.",
         "emptyCategory": "Brak aktualności w kategorii {category}."
     },
