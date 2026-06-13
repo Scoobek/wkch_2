@@ -1,6 +1,5 @@
 .footer {
     background: var(--paper);
-    border-top: 1.5px solid var(--border-strong);
     padding: 0 var(--pad-x);
 }
 
@@ -10,7 +9,6 @@
     gap: 28px;
     align-items: start;
     padding: 36px 0;
-    border-top: 1.5px solid var(--border-strong);
 }
 
 .rowDashed {
