@@ -25,6 +25,8 @@
     --max-w: 1280px;
     --pad-x: 48px;
     --header-h: 67px;
+
+    --meta-card-width: 450px;
 }
 
 @media (max-width: 1280px) {
@@ -70,14 +72,14 @@ img {
     max-width: 100%;
 }
 
-.divider {
-    border: none;
-    border-top: 1.5px solid var(--border-strong);
-    margin: 0 var(--pad-x);
-}
-
-.dividerDash {
-    border: none;
-    border-top: 1.5px dashed var(--ink-secondary);
-    margin: 0 var(--pad-x);
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

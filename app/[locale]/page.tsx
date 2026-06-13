@@ -24,9 +24,7 @@ export default async function HomePage({
             <SiteHeader />
             <main>
                 <HeroSplit />
-                <hr className="divider" />
                 <NewsSection articles={news} />
-                <hr className="dividerDash" />
                 <BreedsSection breeds={BREEDS} />
             </main>
             <PageFooter />

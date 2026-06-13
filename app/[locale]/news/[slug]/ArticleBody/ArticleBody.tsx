@@ -30,11 +30,12 @@ export default async function ArticleBody({ article, locale }: Props) {
         <div className={styles.wrapper}>
             {article.isHeroSection && (
                 <figure className={styles.hero}>
-                    <img
-                        src={article.thumbnail}
+                    <Image
+                        src={article.thumbnail!}
                         alt={article.title}
-                        width={1200}
-                        height={360}
+                        fill
+                        sizes="(max-width: 767px) 100vw, 1280px"
+                        priority
                         className={styles.heroImg}
                     />
                     <figcaption className={styles.heroCaption}>

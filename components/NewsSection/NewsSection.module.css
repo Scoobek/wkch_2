@@ -65,11 +65,15 @@
 }
 
 @media (max-width: 1023px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 767px) {
-    .grid { grid-template-columns: 1fr; }
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .card {
@@ -84,14 +88,27 @@
     position: relative;
 }
 
+@media (max-width: 767px) {
+    .card {
+        max-width: var(--meta-card-width);
+        margin: 0 auto;
+    }
+}
+
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
 }
 
 .cardImage {
+    position: relative;
     height: 160px;
+    overflow: hidden;
     background: linear-gradient(135deg, #e8e4dc 0%, #d5cfc6 60%, #c8c2b8 100%);
+}
+
+.cardImg {
+    object-fit: cover;
 }
 
 .cardLink {

@@ -21,7 +21,13 @@
     "news": {
         "title": "News",
         "subtitle": "coursing · shows · racing",
-        "filterAll": "all",
+        "all": "all",
+        "coursing": "Coursing",
+        "shows": "Shows",
+        "racing": "Racing",
+        "training": "Training",
+        "meetup": "Meetup",
+        "breed": "Breed",
         "empty": "No articles found.",
         "emptyCategory": "No articles in the {category} category."
     },

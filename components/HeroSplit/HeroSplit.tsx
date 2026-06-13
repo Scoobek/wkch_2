@@ -1,7 +1,13 @@
+import Image from 'next/image';
 import { getTranslations, getLocale } from 'next-intl/server';
 import styles from './HeroSplit.module.css';
 
-export default async function HeroSplit() {
+interface Props {
+    src?: string;
+    alt?: string;
+}
+
+export default async function HeroSplit({ src, alt }: Props) {
   const t = await getTranslations('hero');
   const locale = await getLocale();
 
@@ -25,7 +31,18 @@ export default async function HeroSplit() {
       </div>
 
       <div className={styles.imageWrap} aria-hidden="true">
-        <div className={styles.imagePlaceholder} />
+        {src ? (
+          <Image
+            src={src}
+            alt={alt ?? ''}
+            fill
+            sizes="(max-width: 767px) 100vw, 50vw"
+            priority
+            className={styles.heroImg}
+          />
+        ) : (
+          <div className={styles.imagePlaceholder} />
+        )}
       </div>
     </section>
   );
