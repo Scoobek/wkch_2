@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
@@ -13,11 +13,21 @@ export default function SiteHeader() {
 
     const [activeHref, setActiveHref] = useState<string | null>(null);
     const [currentHash, setCurrentHash] = useState('');
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const MENU_CLOSE_DELAY = 200;
 
     useEffect(() => {
         setCurrentHash(window.location.hash);
         setActiveHref(null);
+        setMenuOpen(false);
     }, [pathname]);
+
+    useEffect(() => {
+        return () => {
+            if (menuCloseTimer.current) clearTimeout(menuCloseTimer.current);
+        };
+    }, []);
 
     const otherLocale = locale === "pl" ? "en" : "pl";
     const switchHref = pathname.replace(
@@ -72,7 +82,10 @@ export default function SiteHeader() {
                 </div>
             </Link>
 
-            <nav className={styles.nav} aria-label="Main navigation">
+            <nav
+                className={`${styles.nav}${menuOpen ? ` ${styles.navOpen}` : ""}`}
+                aria-label="Main navigation"
+            >
                 {NAV.map(({ label, href, matchPrefix }) => {
                     const normalize = (h: string) => h.replace('/#', '#');
                     const effective = activeHref ?? (pathname + currentHash);
@@ -83,7 +96,11 @@ export default function SiteHeader() {
                         <Link
                             key={href + label}
                             href={href}
-                            onClick={() => setActiveHref(href)}
+                            onClick={() => {
+                                setActiveHref(href);
+                                if (menuCloseTimer.current) clearTimeout(menuCloseTimer.current);
+                                menuCloseTimer.current = setTimeout(() => setMenuOpen(false), MENU_CLOSE_DELAY);
+                            }}
                             className={`${styles.navLink} ${
                                 isActive ? styles.navLinkActive : ""
                             }`}
@@ -94,19 +111,29 @@ export default function SiteHeader() {
                 })}
             </nav>
 
-            <div className={styles.lang}>
-                <span className={`${styles.langChip} ${styles.langChipActive}`}>
-                    {locale.toUpperCase()}
-                </span>
-                <a
-                    href={switchHref}
-                    className={styles.langChip}
-                    onClick={() =>
-                        localStorage.setItem("wkch-locale", otherLocale)
-                    }
+            <div className={styles.controls}>
+                <div className={styles.lang}>
+                    <span className={`${styles.langChip} ${styles.langChipActive}`}>
+                        {locale.toUpperCase()}
+                    </span>
+                    <a
+                        href={switchHref}
+                        className={styles.langChip}
+                        onClick={() =>
+                            localStorage.setItem("wkch-locale", otherLocale)
+                        }
+                    >
+                        {otherLocale.toUpperCase()}
+                    </a>
+                </div>
+                <button
+                    className={styles.hamburger}
+                    onClick={() => setMenuOpen((o) => !o)}
+                    aria-label={menuOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={menuOpen}
                 >
-                    {otherLocale.toUpperCase()}
-                </a>
+                    {menuOpen ? "✕" : "☰"}
+                </button>
             </div>
         </header>
     );

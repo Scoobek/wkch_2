@@ -3,8 +3,8 @@
   padding: 20px 18px;
   background: var(--bg);
   position: sticky;
-  top: 67px;
-  height: calc(100vh - 67px);
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -162,4 +162,13 @@
 .railCta:hover {
   background: var(--ink);
   color: var(--paper);
+}
+
+@media (max-width: 767px) {
+  .rail {
+    position: static;
+    height: auto;
+    border-left: none;
+    border-top: 1.5px solid var(--border-strong);
+  }
 }

@@ -122,3 +122,8 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+@media (max-width: 767px) {
+  .hero { height: 220px; }
+  .body { grid-template-columns: 1fr; }
+}

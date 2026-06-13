@@ -3,8 +3,8 @@
   padding: 20px 16px;
   background: var(--bg);
   position: sticky;
-  top: 67px;
-  height: calc(100vh - 67px);
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
   overflow-y: auto;
 }
 
@@ -62,4 +62,18 @@
   font-family: var(--font-mono);
   font-size: 10px;
   opacity: 0.7;
+}
+
+@media (max-width: 1023px) {
+  .sidebar { display: none; }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    display: block;
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1.5px solid var(--border-strong);
+  }
 }

@@ -1,5 +1,18 @@
 .layout {
-  display: grid;
-  grid-template-columns: 240px 1fr 320px;
-  min-height: calc(100vh - 67px);
+    display: grid;
+    grid-template-columns: 240px 1fr 320px;
+    min-height: calc(100vh - 67px);
+}
+
+@media (max-width: 1023px) {
+    .layout {
+        grid-template-columns: 1fr 280px;
+    }
+}
+
+@media (max-width: 767px) {
+    .layout {
+        grid-template-columns: 1fr;
+        min-height: unset;
+    }
 }

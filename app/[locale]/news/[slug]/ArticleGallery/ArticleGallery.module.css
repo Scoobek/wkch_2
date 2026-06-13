@@ -75,3 +75,16 @@
     color: #fff;
     pointer-events: none;
 }
+
+@media (max-width: 767px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    .imgItem { height: 120px; }
+    .imgMain {
+        grid-column: span 2;
+        grid-row: span 1;
+        height: 200px;
+    }
+}
