@@ -1,0 +1,109 @@
+.section {
+    padding: 36px var(--pad-x) 0;
+}
+
+.sectionHead {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.sectionTitle {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.sectionSubtitle {
+    font-size: 16px;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* Map placeholder */
+.map {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(135deg, #e8e4dc 0%, #d5cfc6 60%, #c8c2b8 100%);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.mapIframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.mapGrid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+.mapRoads {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.35;
+}
+
+.pin {
+    position: absolute;
+    left: 54%;
+    top: 48%;
+    transform: translate(-50%, -100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.pinLabel {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.coordHead {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.coordCity {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.coordActions {
+    margin-top: 16px;
+}
+
+.navigateBtn {
+    display: inline-block;
+    padding: 7px 16px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--paper);
+    cursor: pointer;
+}
+
+.navigateBtn:hover {
+    background: var(--bg);
+}

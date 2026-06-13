@@ -25,7 +25,7 @@ export default async function BreedRail({ articles, locale }: Props) {
           <p className={styles.featuredLabel}>{t('upcoming')}</p>
           <p className={styles.featuredTitle}>{featured.title}</p>
           {featured.location && (
-            <p className={styles.featuredMeta}>📍 {featured.location}</p>
+            <p className={styles.featuredMeta}>📍 {featured.location.address}</p>
           )}
           <a href={`/${locale}/#news`} className={styles.featuredCta}>
             {t('moreNews')}
@@ -60,7 +60,7 @@ export default async function BreedRail({ articles, locale }: Props) {
               )}
               <p className={styles.feedTitle}>{article.title}</p>
               {article.location && (
-                <p className={styles.feedLoc}>📍 {article.location}</p>
+                <p className={styles.feedLoc}>📍 {article.location.address}</p>
               )}
             </div>
           </div>

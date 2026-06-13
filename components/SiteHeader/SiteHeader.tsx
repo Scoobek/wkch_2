@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
@@ -12,6 +12,12 @@ export default function SiteHeader() {
     const pathname = usePathname();
 
     const [activeHref, setActiveHref] = useState<string | null>(null);
+    const [currentHash, setCurrentHash] = useState('');
+
+    useEffect(() => {
+        setCurrentHash(window.location.hash);
+        setActiveHref(null);
+    }, [pathname]);
 
     const otherLocale = locale === "pl" ? "en" : "pl";
     const switchHref = pathname.replace(
@@ -21,8 +27,8 @@ export default function SiteHeader() {
 
     const NAV = [
         { label: t("start"),   href: `/${locale}` },
-        { label: t("breeds"),  href: `/${locale}/#breeds` },
-        { label: t("news"),    href: `/${locale}/#news` },
+        { label: t("breeds"),  href: `/${locale}/#breeds`, matchPrefix: `/${locale}/breeds` },
+        { label: t("news"),    href: `/${locale}/#news`, matchPrefix: `/${locale}/news` },
         { label: t("about"),   href: `/${locale}/#about` },
         { label: t("events"),  href: `/${locale}/#news` },
         { label: t("contact"), href: `/${locale}/#contact` },
@@ -67,13 +73,12 @@ export default function SiteHeader() {
             </Link>
 
             <nav className={styles.nav} aria-label="Main navigation">
-                {NAV.map(({ label, href }) => {
-                    const effective = activeHref ?? pathname;
+                {NAV.map(({ label, href, matchPrefix }) => {
+                    const normalize = (h: string) => h.replace('/#', '#');
+                    const effective = activeHref ?? (pathname + currentHash);
                     const isActive =
-                        effective === href ||
-                        (!href.includes("#") &&
-                            href !== `/${locale}` &&
-                            pathname.startsWith(href));
+                        normalize(effective) === normalize(href) ||
+                        (matchPrefix !== undefined && pathname.startsWith(matchPrefix));
                     return (
                         <Link
                             key={href + label}

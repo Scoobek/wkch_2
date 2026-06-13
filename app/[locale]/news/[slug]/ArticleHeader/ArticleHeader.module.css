@@ -1,0 +1,74 @@
+.wrapper {
+    padding: 20px var(--pad-x) 0;
+}
+
+.backLink {
+    display: inline-block;
+    font-size: 15px;
+    color: var(--accent);
+    text-decoration: none;
+    margin-bottom: 16px;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.calIcon {
+    width: 14px;
+    height: 14px;
+    color: var(--muted);
+    flex-shrink: 0;
+}
+
+.location {
+    font-size: 15px;
+    color: var(--muted);
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.5vw, 50px);
+    font-weight: 900;
+    line-height: 1.02;
+    color: var(--ink);
+    margin-bottom: 14px;
+}
+
+.excerpt {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 760px;
+    line-height: 1.6;
+    margin-bottom: 4px;
+}

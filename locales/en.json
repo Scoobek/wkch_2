@@ -1,79 +1,97 @@
 {
-  "nav": {
-    "start": "Home",
-    "breeds": "Breeds",
-    "news": "News",
-    "about": "About",
-    "events": "Events",
-    "contact": "Contact"
-  },
-  "hero": {
-    "eyebrow": "est. 1971 · Warsaw",
-    "heading": "Wybieralny Klub",
-    "headingAccent": "Charta w Polsce",
-    "description": "Polish association of breeders and owners of sighthounds of all FCI Group X breeds. We work to protect, breed and promote sighthounds in Poland.",
-    "cta": "Learn more →"
-  },
-  "breeds": {
-    "title": "Sighthound breeds",
-    "subtitle": "FCI Group X · {count} breeds"
-  },
-  "news": {
-    "title": "News",
-    "subtitle": "coursing · shows · racing",
-    "filterAll": "all",
-    "empty": "No articles found.",
-    "emptyCategory": "No articles in the {category} category."
-  },
-  "footer": {
-    "about": "About the club",
-    "aboutText": "Wybieralny Klub Charta has been operating since 1971 and brings together breeders and owners of sighthounds of all FCI Group X breeds in Poland. Our aim is breed protection, responsible breeding and organising competitions.",
-    "aboutCta": "Our history →",
-    "sponsors": "Sponsors",
-    "sponsorsCta": "become a partner →",
-    "social": "Social media",
-    "socialSub": "follow us",
-    "contact": "Contact",
-    "addressLabel": "address",
-    "emailLabel": "email / phone",
-    "responseTime": "we reply within 48h"
-  },
-  "breedPage": {
-    "backLink": "← all breeds",
-    "sidebarHeading": "Breeds · {count}",
-    "breadcrumb": "Breeds / {breed}",
-    "stats": {
-      "height": "height",
-      "weight": "weight",
-      "fciGroup": "FCI group",
-      "origin": "origin"
+    "nav": {
+        "start": "Home",
+        "breeds": "Breeds",
+        "news": "News",
+        "about": "About",
+        "events": "Events",
+        "contact": "Contact"
     },
-    "accordion": {
-      "history": "History & origin",
-      "temperament": "Temperament",
-      "appearance": "Appearance & size",
-      "care": "Care & exercise",
-      "standard": "FCI standard",
-      "gallery": "Photo gallery",
-      "champions": "Famous dogs & champions",
-      "breeders": "Breeders (directory)"
+    "hero": {
+        "eyebrow": "est. 1971 · Warsaw",
+        "heading": "Wybieralny Klub",
+        "headingAccent": "Charta w Polsce",
+        "description": "Polish association of breeders and owners of sighthounds of all FCI Group X breeds. We work to protect, breed and promote sighthounds in Poland.",
+        "cta": "Learn more →"
     },
-    "placeholder": "Content for \"{title}\" coming soon.",
-    "feed": "Feed",
-    "upcoming": "UPCOMING",
-    "moreNews": "more →",
-    "allCalendar": "Full calendar →",
-    "railFilters": {
-      "all": "all",
-      "coursing": "coursing",
-      "shows": "shows",
-      "racing": "racing"
+    "breeds": {
+        "title": "Sighthound breeds",
+        "subtitle": "FCI Group X · {count} breeds"
+    },
+    "news": {
+        "title": "News",
+        "subtitle": "coursing · shows · racing",
+        "filterAll": "all",
+        "empty": "No articles found.",
+        "emptyCategory": "No articles in the {category} category."
+    },
+    "footer": {
+        "about": "About the club",
+        "aboutText": "Wybieralny Klub Charta has been operating since 1971 and brings together breeders and owners of sighthounds of all FCI Group X breeds in Poland. Our aim is breed protection, responsible breeding and organising competitions.",
+        "aboutCta": "Our history →",
+        "sponsors": "Sponsors",
+        "sponsorsCta": "become a partner →",
+        "social": "Social media",
+        "socialSub": "follow us",
+        "contact": "Contact",
+        "addressLabel": "address",
+        "emailLabel": "email / phone",
+        "responseTime": "we reply within 48h"
+    },
+    "breedPage": {
+        "backLink": "← all breeds",
+        "sidebarHeading": "Breeds · {count}",
+        "breadcrumb": "Breeds / {breed}",
+        "stats": {
+            "height": "height",
+            "weight": "weight",
+            "fciGroup": "FCI group",
+            "origin": "origin"
+        },
+        "accordion": {
+            "history": "History & origin",
+            "temperament": "Temperament",
+            "appearance": "Appearance & size",
+            "care": "Care & exercise",
+            "standard": "FCI standard",
+            "gallery": "Photo gallery",
+            "champions": "Famous dogs & champions",
+            "breeders": "Breeders (directory)"
+        },
+        "placeholder": "Content for \"{title}\" coming soon.",
+        "feed": "Feed",
+        "upcoming": "UPCOMING",
+        "moreNews": "more →",
+        "allCalendar": "Full calendar →",
+        "railFilters": {
+            "all": "all",
+            "coursing": "coursing",
+            "shows": "shows",
+            "racing": "racing"
+        }
+    },
+    "newsArticlePage": {
+        "backLink": "← News",
+        "about": "About the event",
+        "details": "Details",
+        "detailType": "Type",
+        "detailDate": "Date",
+        "detailCity": "City",
+        "detailAddress": "Address",
+        "detailLat": "Latitude",
+        "detailLng": "Longitude",
+        "registerCta": "Register →",
+        "location": "Location",
+        "locationSubtitle": "— where the event takes place",
+        "navigate": "Navigate →",
+        "gallery": "Gallery",
+        "gallerySubtitle": "— event photos",
+        "articleTitle": "{title} – Wybieralny Klub Charta"
+    },
+    "metadata": {
+        "siteTitle": "Wybieralny Klub Charta",
+        "siteDescription": "Polish association of breeders and owners of sighthounds of all FCI Group X breeds.",
+        "breedTitle": "{breed} – Wybieralny Klub Charta",
+        "breedDescription": "Information about the {breed} ({breedEn}) breed – FCI no. {fci}."
     }
-  },
-  "metadata": {
-    "siteTitle": "Wybieralny Klub Charta",
-    "siteDescription": "Polish association of breeders and owners of sighthounds of all FCI Group X breeds.",
-    "breedTitle": "{breed} – Wybieralny Klub Charta",
-    "breedDescription": "Information about the {breed} ({breedEn}) breed – FCI no. {fci}."
-  }
 }
