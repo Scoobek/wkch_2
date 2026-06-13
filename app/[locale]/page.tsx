@@ -1,5 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
-import { localeParams } from '@/lib/static-params';
+import { localeParams } from "@/lib/static-params";
 import SiteHeader from "@/components/SiteHeader/SiteHeader";
 import HeroSplit from "@/components/HeroSplit/HeroSplit";
 import NewsSection from "@/components/NewsSection/NewsSection";
@@ -28,8 +28,8 @@ export default async function HomePage({
                 <NewsSection articles={news} />
                 <hr className="dividerDash" />
                 <BreedsSection breeds={BREEDS} />
-                <PageFooter />
             </main>
+            <PageFooter />
         </>
     );
 }
