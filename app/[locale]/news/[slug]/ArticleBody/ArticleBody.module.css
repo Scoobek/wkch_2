@@ -1,0 +1,124 @@
+.wrapper {
+  padding: 24px var(--pad-x) 0;
+}
+
+.hero {
+  position: relative;
+  height: 360px;
+  background: linear-gradient(135deg, #e8e4dc 0%, #d5cfc6 60%, #c8c2b8 100%);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroCaption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+  align-items: start;
+}
+
+.content {
+  min-width: 0;
+}
+
+.contentTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-secondary);
+  max-width: 680px;
+}
+
+/* Meta card */
+.metaCard {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px;
+  background: var(--paper);
+}
+
+.metaCardTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.metaList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.metaRow:first-child {
+  padding-top: 0;
+}
+
+.metaLabel {
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.metaValue {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  color: var(--ink);
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 8px 18px;
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
